@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<greenhouse>
+    <flowers>
+        <flower id = "1">
+            <name ></name>
+            <soil></soil>
+            <origin></origin>
+            <visual-parametrs></visual-parametrs>
+            <growing-tips></growing-tips>
+            <multiplying></multiplying>
+        </flower>
+
+        <flower id = "2">
+            <name ></name>
+            <soil></soil>
+            <origin></origin>
+            <visual-parametrs></visual-parametrs>
+            <growing-tips></growing-tips>
+            <multiplying></multiplying>
+        </flower>
+
+        <flower id = "3">
+            <name ></name>
+            <soil></soil>
+            <origin></origin>
+            <visual-parametrs></visual-parametrs>
+            <growing-tips></growing-tips>
+            <multiplying></multiplying>
+        </flower>
+    </flowers>
+</greenhouse>
