@@ -8,9 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Flower {
     private String name;
     private String soil;
-    private String origin;/*
+    private String origin;
     private String visualParametrs;
     private String growingTips;
-    private String multiplying;*/
-
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema">
+
+    <element name="name" type="string"/>
+
+    <simpleType name="soil">
+        <restriction base="string">
+            <enumeration value = "clay" ></enumeration>
+            <enumeration value = "silt"></enumeration>
+            <enumeration value = "sandy"></enumeration>
+        </restriction>
+    </simpleType>
+
+    <complexType name = "origin">
+        <sequence>
+            <element name="country" type="string"></element>
+            <element name="province" type="string"></element>
+        </sequence>
+    </complexType>
+
+    <complexType name="visual-parameters">
+        <sequence>
+            <element name="color-stem" type="positiveInteger"/>
+            <element name="color-leaves" type="positiveInteger"/>
+            <element name="average-height" type="positiveInteger"/>
+        </sequence>
+    </complexType>
+
+    <element name="growing-tips" type="string"></element>
+
+</schema>
