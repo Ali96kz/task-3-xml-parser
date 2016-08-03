@@ -7,18 +7,18 @@ public class Flower {
     private int id;
     private String name;
     private String soil;
-    private VisualParametrs visualParametrs;
+    private VisualParameters visualParameters;
     private String growingTips;
     private Origin origin;
 
     public Flower() {
     }
 
-    public Flower(int id, String name, String soil, VisualParametrs visualParametrs, String growingTips, Origin origin) {
+    public Flower(int id, String name, String soil, VisualParameters visualParameters, String growingTips, Origin origin) {
         this.id = id;
         this.name = name;
         this.soil = soil;
-        this.visualParametrs = visualParametrs;
+        this.visualParameters = visualParameters;
         this.growingTips = growingTips;
         this.origin = origin;
     }
@@ -47,12 +47,12 @@ public class Flower {
         this.soil = soil;
     }
 
-    public VisualParametrs getVisualParametrs() {
-        return visualParametrs;
+    public VisualParameters getVisualParameters() {
+        return visualParameters;
     }
     @XmlElement(name = "visual-parametrs")
-    public void setVisualParametrs(VisualParametrs visualParametrs) {
-        this.visualParametrs = visualParametrs;
+    public void setVisualParameters(VisualParameters visualParameters) {
+        this.visualParameters = visualParameters;
     }
 
     public String getGrowingTips() {
@@ -73,7 +73,7 @@ public class Flower {
 
     @Override
     public String toString() {
-        return id+" "+name+" "+soil+" "+ visualParametrs;
+        return id+" "+name+" "+soil+" "+ visualParameters;
     }
 }
 

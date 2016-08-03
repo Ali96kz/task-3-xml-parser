@@ -2,12 +2,12 @@ package com.epam.az.xml.entity;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class VisualParametrs {
+public class VisualParameters {
     private String colorSteam;
     private String colorLeaves;
     private int averageHeight;
 
-    public VisualParametrs(){
+    public VisualParameters(){
     }
 
     public String getColorSteam() {
