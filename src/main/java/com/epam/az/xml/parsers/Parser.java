@@ -19,6 +19,7 @@ public class Parser implements XmlParser {
             JAXBContext jaxbContext = JAXBContext.newInstance(GreenHouse.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             GreenHouse e = (GreenHouse) jaxbUnmarshaller.unmarshal(file);
+           return e.getFlower();
         } catch (JAXBException e) {
             e.printStackTrace();
         }

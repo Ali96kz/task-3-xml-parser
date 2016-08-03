@@ -9,8 +9,38 @@
             <province>astana</province>
         </origin>
         <visual-parametrs>
-            <clor-steam>4</clor-steam>
-            <clor-leaves>4</clor-leaves>
+            <color-steam>4</color-steam>
+            <color-leaves>4</color-leaves>
+            <average-height>5</average-height>
+        </visual-parametrs>
+        <growing-tips>that is some growing types, what help you togrow flower easily</growing-tips>
+    </flower>
+
+    <flower id = "2">
+        <name>asd</name>
+        <soil>clay</soil>
+        <origin>
+            <country>KZ</country>
+            <province>astana</province>
+        </origin>
+        <visual-parametrs>
+            <color-steam>4</color-steam>
+            <color-leaves>4</color-leaves>
+            <average-height>5</average-height>
+        </visual-parametrs>
+        <growing-tips>that is some growing types, what help you togrow flower easily</growing-tips>
+    </flower>
+
+    <flower id = "3">
+        <name>asd</name>
+        <soil>clay</soil>
+        <origin>
+            <country>KZ</country>
+            <province>astana</province>
+        </origin>
+        <visual-parametrs>
+            <color-steam>4</color-steam>
+            <color-leaves>4</color-leaves>
             <average-height>5</average-height>
         </visual-parametrs>
         <growing-tips>that is some growing types, what help you togrow flower easily</growing-tips>
