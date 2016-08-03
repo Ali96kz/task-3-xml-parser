@@ -1,10 +1,14 @@
 package com.epam.az.xml;
 
+import com.epam.az.xml.parsers.Parser;
+
 public class Main {
     public static void main(String[] args) {
-        //TODO create xsd schema
-        //TODO create xml example
-        //TODO create entity
-        //TODO add Jaxb
+        Parser parser = new Parser();
+        parser.parserFlowers("./src/main/resources/greenhouse.xml");
+
     }
 }
+
+
+

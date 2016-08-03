@@ -24,7 +24,15 @@
             <element name="color-leaves" type="positiveInteger"/>
             <element name="average-height" type="positiveInteger"/>
         </sequence>
-    </complexType>
+    </complexType >
+
+    <simpleType name="multiply-parameters">
+        <restriction base="string">
+            <enumeration value="leaf"/>
+            <enumeration value="cuttings"/>
+            <enumeration value="seeds"/>
+        </restriction>
+    </simpleType>
 
     <element name="growing-tips" type="string"></element>
 
