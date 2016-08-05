@@ -7,9 +7,10 @@ public class Flower {
     private int id;
     private String name;
     private String soil;
-    private VisualParameters visualParameters;
     private String growingTips;
+
     private Origin origin;
+    private VisualParameters visualParameters;
 
     public Flower() {
     }
@@ -23,57 +24,65 @@ public class Flower {
         this.origin = origin;
     }
 
-    public int getId() {
-        return id;
-    }
     @XmlAttribute
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public int getId() {
+        return id;
     }
+
     @XmlElement
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getSoil() {
-        return soil;
+    public String getName() {
+        return name;
     }
+
     @XmlElement
     public void setSoil(String soil) {
         this.soil = soil;
     }
 
-    public VisualParameters getVisualParameters() {
-        return visualParameters;
+    public String getSoil() {
+        return soil;
     }
+
     @XmlElement(name = "visual-parametrs")
     public void setVisualParameters(VisualParameters visualParameters) {
         this.visualParameters = visualParameters;
     }
 
-    public String getGrowingTips() {
-        return growingTips;
+    public VisualParameters getVisualParameters() {
+        return visualParameters;
     }
-    @XmlElement
+
+    @XmlElement(name = "growing-tips")
     public void setGrowingTips(String growingTips) {
         this.growingTips = growingTips;
     }
 
-    public void setOrigin(Origin origin) {
-        this.origin = origin;
+    public String getGrowingTips() {
+        return growingTips;
     }
+
     @XmlElement
     public Origin getOrigin() {
         return origin;
     }
 
+    public void setOrigin(Origin origin) {
+        this.origin = origin;
+    }
+
+
     @Override
     public String toString() {
-        return id+" "+name+" "+soil+" "+ visualParameters;
+        return id+" "+name+" "+soil+" "+visualParameters
+                +" "+origin+" "+growingTips;
     }
 }
 

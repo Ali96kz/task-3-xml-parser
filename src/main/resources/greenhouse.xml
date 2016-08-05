@@ -9,8 +9,8 @@
             <province>astana</province>
         </origin>
         <visual-parametrs>
-            <color-steam>4</color-steam>
-            <color-leaves>4</color-leaves>
+            <color-steam>red</color-steam>
+            <color-leaves>green</color-leaves>
             <average-height>5</average-height>
         </visual-parametrs>
         <growing-tips>that is some growing types, what help you to grow flower easily</growing-tips>

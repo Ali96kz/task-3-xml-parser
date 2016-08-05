@@ -10,7 +10,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Parser implements XmlParser {
+public class JaxbParser implements XmlParser {
     public List<Flower> parserFlowers(String filePath){
         List<Flower> flowers = new ArrayList<>();
 
@@ -18,8 +18,8 @@ public class Parser implements XmlParser {
             File file = new File(filePath);
             JAXBContext jaxbContext = JAXBContext.newInstance(GreenHouse.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            GreenHouse e = (GreenHouse) jaxbUnmarshaller.unmarshal(file);
-           return e.getFlower();
+            GreenHouse greenHouse = (GreenHouse) jaxbUnmarshaller.unmarshal(file);
+           return greenHouse.getFlower();
         } catch (JAXBException e) {
             e.printStackTrace();
         }
