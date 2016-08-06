@@ -1,11 +1,10 @@
 package com.epam.az.xml;
 
-import com.epam.az.xml.entity.Flower;
 import com.epam.az.xml.entity.GreenHouse;
 
 import java.io.*;
 
-public class WriteInHtml {
+public class WriterInHtml {
     private String htmlStart = "<!doctype html>\n" +
             "<html lang=\"en\">\n" +
             "<head>\n" +
@@ -17,20 +16,15 @@ public class WriteInHtml {
             "</body>\n" +
             "</html>";
 
-    public void write(GreenHouse greenHouse) throws IOException {
+    public void write(GreenHouse greenHouse) {
         File file = new File("./src/main/resources/flower.html");
-        OutputStream outputStream = new FileOutputStream(file);
-
+        FileWriter fileWriter = new FileWriter();
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(htmlStart);
 
-        for (Flower flower : greenHouse.getFlower()) {
-            stringBuilder.append(flower+"<br>");
-        }
+        stringBuilder.append(htmlStart);
+        stringBuilder.append(greenHouse);
         stringBuilder.append(htmlEnd);
 
-        for (int i = 0; i < stringBuilder.length(); i++) {
-             outputStream.write(stringBuilder.charAt(i));
-        }
+        fileWriter.write(file, stringBuilder);
     }
 }

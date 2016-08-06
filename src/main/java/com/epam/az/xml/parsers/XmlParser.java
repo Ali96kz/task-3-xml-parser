@@ -1,10 +1,9 @@
 package com.epam.az.xml.parsers;
 
+import com.epam.az.xml.entity.GreenHouse;
+
 import java.io.File;
 
 public interface XmlParser {
-    String parseFile(File file);
-    String parseFile(String path);
-    String parseWeb(String url);
-
+    GreenHouse parseXml(String path);
 }
