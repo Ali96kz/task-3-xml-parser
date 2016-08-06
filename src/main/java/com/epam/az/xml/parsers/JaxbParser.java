@@ -23,8 +23,21 @@ public class JaxbParser implements XmlParser {
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-
         return flowers;
     }
 
+    @Override
+    public String parseFile(File file) {
+        return null;
+    }
+
+    @Override
+    public String parseFile(String path) {
+        return null;
+    }
+
+    @Override
+    public String parseWeb(String url) {
+        return null;
+    }
 }

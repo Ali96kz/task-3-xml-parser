@@ -7,21 +7,12 @@ public class Flower {
     private int id;
     private String name;
     private String soil;
-    private String growingTips;
 
+    private GrowingTips growingTips;
     private Origin origin;
     private VisualParameters visualParameters;
 
     public Flower() {
-    }
-
-    public Flower(int id, String name, String soil, VisualParameters visualParameters, String growingTips, Origin origin) {
-        this.id = id;
-        this.name = name;
-        this.soil = soil;
-        this.visualParameters = visualParameters;
-        this.growingTips = growingTips;
-        this.origin = origin;
     }
 
     @XmlAttribute
@@ -61,11 +52,11 @@ public class Flower {
     }
 
     @XmlElement(name = "growing-tips")
-    public void setGrowingTips(String growingTips) {
+    public void setGrowingTips(GrowingTips growingTips) {
         this.growingTips = growingTips;
     }
 
-    public String getGrowingTips() {
+    public GrowingTips getGrowingTips() {
         return growingTips;
     }
 

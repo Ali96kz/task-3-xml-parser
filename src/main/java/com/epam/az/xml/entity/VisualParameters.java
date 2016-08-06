@@ -1,7 +1,6 @@
 package com.epam.az.xml.entity;
 
 import javax.xml.bind.annotation.XmlElement;
-import java.awt.*;
 
 public class VisualParameters {
     private String colorSteam;
@@ -15,6 +14,7 @@ public class VisualParameters {
     public String getColorSteam() {
         return colorSteam;
     }
+
     @XmlElement(name = "color-steam")
     public void setColorSteam(String colorSteam) {
         this.colorSteam = colorSteam;
