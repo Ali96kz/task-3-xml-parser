@@ -7,16 +7,26 @@ import java.util.List;
 
 @XmlRootElement(name = "greenhouse")
 public class GreenHouse {
-    private List<Flower> flower ;
+    private List<Flower> flowers;
 
     public GreenHouse() {
     }
 
     public List<Flower> getFlower() {
-        return flower;
+        return flowers;
     }
     @XmlElement
-    public void setFlower(List<Flower> flower) {
-        this.flower = flower;
+    public void setFlower(List<Flower> flowers) {
+        this.flowers = flowers;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Flower flower : flowers) {
+            stringBuilder.append(flower);
+        }
+
+        return stringBuilder.toString();
     }
 }

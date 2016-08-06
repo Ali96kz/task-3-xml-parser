@@ -25,6 +25,7 @@
             </water-in-week>
         </growing-tips>
     </flower>
+
     <flower id = "2">
         <name>RedRose</name>
         <soil>clay</soil>
@@ -49,6 +50,7 @@
             </water-in-week>
         </growing-tips>
     </flower>
+
     <flower id = "3">
         <name>BlueRose</name>
         <soil>clay</soil>
@@ -73,4 +75,5 @@
             </water-in-week>
         </growing-tips>
     </flower>
+
 </greenhouse>
