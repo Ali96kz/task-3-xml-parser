@@ -1,4 +1,4 @@
-package com.epam.az.xml;
+package com.epam.az.xml.writers;
 
 import com.epam.az.xml.entity.GreenHouse;
 
@@ -18,7 +18,7 @@ public class WriterInHtml {
 
     public void write(GreenHouse greenHouse) {
         File file = new File("./src/main/resources/flower.html");
-        FileWriter fileWriter = new FileWriter();
+        com.epam.az.xml.writers.FileWriter fileWriter = new com.epam.az.xml.writers.FileWriter();
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(htmlStart);

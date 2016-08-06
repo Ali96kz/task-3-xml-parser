@@ -1,4 +1,4 @@
-package com.epam.az.xml;
+package com.epam.az.xml.writers;
 
 import java.io.*;
 
