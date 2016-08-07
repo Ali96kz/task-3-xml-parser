@@ -8,7 +8,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
-public class JaxbParser implements XmlParser {
+public class MyJaxbParser implements XmlParser {
 
     @Override
     public GreenHouse parseXml(String filePath) {

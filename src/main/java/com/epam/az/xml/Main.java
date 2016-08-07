@@ -1,20 +1,25 @@
 package com.epam.az.xml;
 
-import com.epam.az.xml.entity.GreenHouse;
-import com.epam.az.xml.parsers.JaxbParser;
-import com.epam.az.xml.parsers.XmlParser;
-import com.epam.az.xml.writers.WriterInHtml;
+import com.epam.az.xml.parsers.MySaxParser;
+
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.io.File;
 
 
 public class Main {
 
     public static void main(String[] args)  {
-        XmlParser parser = new JaxbParser();
-        WriterInHtml writerInHtml = new WriterInHtml();
-        GreenHouse greenHouse = parser.parseXml("./src/main/resources/greenhouse.xml");
+        try {
+            File inputFile = new File("./src/main/resources/greenhouse.xml");
+            SAXParserFactory factory = SAXParserFactory.newInstance();
+            SAXParser saxParser = factory.newSAXParser();
+            MySaxParser userhandler = new MySaxParser();
+            saxParser.parse(inputFile, userhandler);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        System.out.println(greenHouse);
-        writerInHtml.write(greenHouse);
     }
 }
 

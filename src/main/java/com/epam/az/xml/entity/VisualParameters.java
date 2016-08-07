@@ -3,6 +3,7 @@ package com.epam.az.xml.entity;
 import javax.xml.bind.annotation.XmlElement;
 
 public class VisualParameters {
+    //TODO add Color object
     private String colorSteam;
     private String colorLeaves;
     private int averageHeight;

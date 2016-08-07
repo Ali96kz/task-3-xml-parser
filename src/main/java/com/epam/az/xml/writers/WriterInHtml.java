@@ -1,5 +1,6 @@
 package com.epam.az.xml.writers;
 
+import com.epam.az.xml.entity.Flower;
 import com.epam.az.xml.entity.GreenHouse;
 
 import java.io.*;
@@ -22,9 +23,10 @@ public class WriterInHtml {
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append(htmlStart);
-        stringBuilder.append(greenHouse);
+        for (Flower flower : greenHouse.getFlower()) {
+            stringBuilder.append(flower+"<br>");
+        }
         stringBuilder.append(htmlEnd);
-
         fileWriter.write(file, stringBuilder);
     }
 }
