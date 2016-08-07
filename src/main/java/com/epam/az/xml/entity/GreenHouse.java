@@ -31,6 +31,9 @@ public class GreenHouse {
     public Flower get(int index){
         return flowers.get(index);
     }
+    public void add(Flower flower){
+        flowers.add(flower);
+    }
     public void remove(int index){
         flowers.remove(index);
     }
