@@ -2,14 +2,14 @@ package com.epam.az.xml.entity;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class VisualParameters {
+public class FlowerVisualParameters {
     //TODO add Color object
     private String colorSteam;
     private String colorLeaves;
     private int averageHeight;
 
 
-    public VisualParameters(){
+    public FlowerVisualParameters(){
     }
 
     public String getColorSteam() {
