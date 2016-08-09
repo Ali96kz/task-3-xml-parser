@@ -2,20 +2,21 @@ package com.epam.az.xml.entity;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement(name = "greenhouse")
 public class GreenHouse {
-    private List<Flower> flowers;
+    private List<AliveFlower> flowers;
 
     public GreenHouse() {
     }
 
-    public List<Flower> getFlower() {
+    public List<AliveFlower> getFlower() {
         return flowers;
     }
     @XmlElement
-    public void setFlower(List<Flower> flowers) {
+    public void setFlower(List<AliveFlower> flowers) {
         this.flowers = flowers;
     }
 
@@ -31,10 +32,17 @@ public class GreenHouse {
     public Flower get(int index){
         return flowers.get(index);
     }
-    public void add(Flower flower){
+    public void add(AliveFlower flower){
         flowers.add(flower);
     }
     public void remove(int index){
         flowers.remove(index);
+    }
+    public List<AliveFlower> getFlowers(){
+        List<AliveFlower> result = new ArrayList<>(flowers.size());
+        for (AliveFlower flower : flowers) {
+            result.add(flower);
+        }
+        return result;
     }
 }

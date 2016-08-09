@@ -2,7 +2,7 @@ package com.epam.az.xml.entity;
 
 public class AliveFlower extends PresentFlower {
     private int aliveDay;
-
+    private GrowingTips growingTips;
     public AliveFlower() {
 
     }

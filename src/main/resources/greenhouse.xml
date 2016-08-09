@@ -1,79 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<greenhouse>
+<flowers>
     <flower id = "1">
         <name>Rose</name>
+        <quantity>45</quantity>
+        <price>450</price>
         <soil>clay</soil>
+        <type>Alive</type>
+
+        <description>This is short description about flower</description>
+
         <origin>
             <country>KZ</country>
             <province>astana</province>
         </origin>
-        <visual-parametrs>
+
+        <visualParametrs>
             <color-steam>red</color-steam>
             <color-leaves>green</color-leaves>
             <average-height>5</average-height>
-        </visual-parametrs>
-        <growing-tips>
+        </visualParametrs>
+
+        <growingTips>
             <temperature>
                 <min>15</min>
                 <max>20</max>
             </temperature>
             <lovelight>true</lovelight>
-            <water-in-week>
+            <waterInWeek>
                 <min>150</min>
                 <max>200</max>
-            </water-in-week>
-        </growing-tips>
+            </waterInWeek>
+        </growingTips>
     </flower>
 
-    <flower id = "2">
-        <name>RedRose</name>
-        <soil>clay</soil>
-        <origin>
-            <country>KZ</country>
-            <province>astana</province>
-        </origin>
-        <visual-parametrs>
-            <color-steam>red</color-steam>
-            <color-leaves>green</color-leaves>
-            <average-height>5</average-height>
-        </visual-parametrs>
-        <growing-tips>
-            <temperature>
-                <min>5</min>
-                <max>10</max>
-            </temperature>
-            <lovelight>true</lovelight>
-            <water-in-week>
-                <min>150</min>
-                <max>200</max>
-            </water-in-week>
-        </growing-tips>
-    </flower>
-
-    <flower id = "3">
-        <name>BlueRose</name>
-        <soil>clay</soil>
-        <origin>
-            <country>KZ</country>
-            <province>astana</province>
-        </origin>
-        <visual-parametrs>
-            <color-steam>red</color-steam>
-            <color-leaves>green</color-leaves>
-            <average-height>5</average-height>
-        </visual-parametrs>
-        <growing-tips>
-            <temperature>
-                <min>20</min>
-                <max>45</max>
-            </temperature>
-            <lovelight>true</lovelight>
-            <water-in-week>
-                <min>150</min>
-                <max>200</max>
-            </water-in-week>
-        </growing-tips>
-    </flower>
-
-</greenhouse>
+</flowers>

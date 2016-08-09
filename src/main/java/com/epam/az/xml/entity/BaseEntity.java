@@ -4,11 +4,11 @@ public abstract class BaseEntity {
     private int id;
     private int price;
     private int count;
+
     private String description;
     private String name;
     private String colour;
     private Origin origin;
-
 
     public BaseEntity() {
     }
@@ -27,6 +27,14 @@ public abstract class BaseEntity {
 
     public void setColour(String colour) {
         this.colour = colour;
+    }
+
+    public Origin getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(Origin origin) {
+        this.origin = origin;
     }
 
     public int getPrice() {

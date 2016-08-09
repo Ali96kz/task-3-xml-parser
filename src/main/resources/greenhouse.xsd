@@ -2,6 +2,18 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema">
 
     <element name="name" type="string"/>
+    <element name="quantity" type="positiveInteger"/>
+    <element name="price" type="positiveInteger"/>
+    <element name="height" type="positiveInteger"/>
+
+    <simpleType name="type">
+        <restriction base="string">
+            <enumeration value = "alive" ></enumeration>
+            <enumeration value = "synthetic" ></enumeration>
+        </restriction>
+    </simpleType>
+
+    <element name="description" type="integer"/>
 
     <simpleType name="soil">
         <restriction base="string">
@@ -25,16 +37,5 @@
             <element name="average-height" type="positiveInteger"/>
         </sequence>
     </complexType >
-
-    <simpleType name="multiply-parameters">
-        <restriction base="string">
-            <enumeration value="leaf"/>
-            <enumeration value="cuttings"/>
-            <enumeration value="seeds"/>
-        </restriction>
-    </simpleType>
-
-
-    <element name="growing-tips" type="string"></element>
 
 </schema>

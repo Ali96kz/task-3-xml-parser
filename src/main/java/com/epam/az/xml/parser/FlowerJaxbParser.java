@@ -1,6 +1,5 @@
-package com.epam.az.xml.parsers;
+package com.epam.az.xml.parser;
 
-import com.epam.az.xml.entity.Flower;
 import com.epam.az.xml.entity.GreenHouse;
 
 import javax.xml.bind.JAXBContext;
@@ -8,7 +7,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
-public class MyJaxbParser implements XmlParser {
+public class FlowerJaxbParser implements XmlParser {
 
     @Override
     public GreenHouse parseXml(String filePath) {

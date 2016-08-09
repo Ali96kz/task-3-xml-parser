@@ -1,25 +1,25 @@
 package com.epam.az.xml;
 
-import com.epam.az.xml.parsers.SaxHandler;
-
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import java.io.File;
-
+import com.epam.az.xml.entity.AliveFlower;
+import java.lang.reflect.Method;
 
 public class Main {
-
     public static void main(String[] args)  {
+        Method methods[] = AliveFlower.class.getDeclaredMethods();
         try {
-            File inputFile = new File("./src/main/resources/greenhouse.xml");
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-            SAXParser saxParser = factory.newSAXParser();
-            SaxHandler userhandler = new SaxHandler();
-            saxParser.parse(inputFile, userhandler);
-        } catch (Exception e) {
+            AliveFlower aliveFlower = AliveFlower.class.newInstance();
+            for (Method method : methods) {
+
+            }
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-
+    }
+    public static boolean isSetter(Method method){
+        if(method.getName().startsWith("set")) return true;
+        return false;
     }
 }
 
