@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <xs:element name="beers" type="beersType">
+    </xs:element>
+
+    <xs:complexType name="beersType">
+        <xs:sequence>
+            <xs:element name="beer" type="Beer" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Beer">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+
+            <xs:element name="type">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Pale"/>
+                        <xs:enumeration value="Dark"/>
+                        <xs:enumeration value="Lager"/>
+                        <xs:enumeration value="Alive"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+            <xs:element name="al" type="xs:string"/>
+            <xs:element name="manufacturer" type="xs:string"/>
+            <xs:element name="ingredients" type="Ingredients"/>
+            <xs:element name="char" type="Char"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Ingredients">
+        <xs:sequence>
+            <xs:element name="water" type="xs:string"/>
+            <xs:element name="malt" type="xs:string"/>
+            <xs:element name="hop" type="xs:string"/>
+            <xs:element name="sugar" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Char">
+        <sequence>
+            <xs:element name="al" type="xs:string"/>
+            <xs:element name="transparency" type="xs:string"/>
+            <xs:element name="filtration" type="xs:string"/>
+            <xs:element name="nutritive" type="xs:string"/>
+            <xs:element name="container" type="xs:string"/>
+        </sequence>
+    </xs:complexType

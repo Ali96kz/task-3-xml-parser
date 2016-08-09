@@ -1,9 +1,6 @@
 package com.epam.az.xml.parser;
 
-import com.epam.az.xml.entity.AliveFlower;
-import com.epam.az.xml.entity.BaseEntity;
-import com.epam.az.xml.entity.Flower;
-import com.epam.az.xml.entity.GreenHouse;
+import com.epam.az.xml.entity.*;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -13,7 +10,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class FlowerSaxParser implements XmlParser{
@@ -41,39 +38,58 @@ public class FlowerSaxParser implements XmlParser{
 
     }
 
-
     class SaxHandler extends DefaultHandler{
+
+        StringBuilder stringBuilder  = new StringBuilder();
+        Class clazz;
+        Method method;
+        AliveFlower aliveFlower = new AliveFlower();
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-
-            Method methods[] = AliveFlower.class.getDeclaredMethods();
             try {
-                AliveFlower aliveFlower = AliveFlower.class.newInstance();
-                for (Method method : methods) {
-                    if(isSetter(method)){
-                        invokeMethodByName("set"+"qName");
-
-                    }
-                }
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
+                method = AliveFlower.class.getMethod("set"+qName);
+                clazz = method.getReturnType();
+            } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             }
         }
 
-        public  boolean isSetter(Method method){
-            if(method.getName().startsWith("set")) return true;
-            return false;
+        @Override
+        public void characters(char[] ch, int start, int length) throws SAXException {
+            stringBuilder.append(ch, start, length);
+
         }
 
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
-            Flower flower = new AliveFlower();
-            flower.setId(1);
-            Field field[]  = GreenHouse.class.getDeclaredFields();
+            Object obj = stringBuilderToObjectType(stringBuilder ,clazz);
+            invokeMethodByName(obj);
+            stringBuilder = new StringBuilder();
+        }
+
+        public Object stringBuilderToObjectType(StringBuilder stringBuilder, Class aclass){
+            if(aclass.getTypeName() == "int"){
+                int result = Integer.parseInt(stringBuilder.toString());
+                return result;
+            }else if(aclass.getTypeName() == "string"){
+            }
+            return "sd";
+        }
+
+        private  void invokeMethodByName(Object value) {
+            try {
+                method.invoke(aliveFlower, value);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
 
         }
 
+        private   boolean isSetter(Method method){
+            if(method.getName().startsWith("set")) return true;
+            return false;
+        }
     }
 }

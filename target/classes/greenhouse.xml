@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<flowers>
-    <flower id = "1">
+    <flower>
         <name>Rose</name>
         <quantity>45</quantity>
         <price>450</price>
@@ -14,23 +13,21 @@
             <province>astana</province>
         </origin>
 
-        <visual-parametrs>
+        <visualParametrs>
             <color-steam>red</color-steam>
             <color-leaves>green</color-leaves>
             <average-height>5</average-height>
-        </visual-parametrs>
+        </visualParametrs>
 
-        <growing-tips>
+        <growingTips>
             <temperature>
                 <min>15</min>
                 <max>20</max>
             </temperature>
             <lovelight>true</lovelight>
-            <water-in-week>
+            <waterInWeek>
                 <min>150</min>
                 <max>200</max>
-            </water-in-week>
-        </growing-tips>
+            </waterInWeek>
+        </growingTips>
     </flower>
-
-</flowers>

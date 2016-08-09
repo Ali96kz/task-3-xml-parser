@@ -1,41 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema">
+<schema  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="flower" type="">
+    </xs:element>
 
-    <element name="name" type="string"/>
-    <element name="quantity" type="positiveInteger"/>
-    <element name="price" type="positiveInteger"/>
-    <element name="height" type="positiveInteger"/>
+    <xs:complexType name="asd">
+        <sequence>
+            <element name="flower" type="flowerType" maxOccurs="unbounded" minOccurs="0"/>
+        </sequence>
+    </xs:complexType>
 
-    <simpleType name="type">
-        <restriction base="string">
-            <enumeration value = "alive" ></enumeration>
-            <enumeration value = "synthetic" ></enumeration>
-        </restriction>
-    </simpleType>
+    <xs:complexType name="flowerType">
+        <sequence>
+            <element name="name" type="string"/>
+            <element name="quantity" type="positiveInteger"/>
+            <element name="price" type="positiveInteger"/>
+            <element name="soil" >
+                <simpleType >
+                    <restriction base="string">
+                        <enumeration value="clay"></enumeration>
+                        <enumeration value="silt"></enumeration>
+                        <enumeration value="sandy"></enumeration>
+                    </restriction>
+                </simpleType>
+            </element>
 
-    <element name="description" type="integer"/>
+            <element name="flowerType">
+                <simpleType >
+                    <restriction base="string">
+                        <enumeration value="alive"></enumeration>
+                        <enumeration value="synthetic"></enumeration>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="description" type="string"/>
 
-    <simpleType name="soil">
-        <restriction base="string">
-            <enumeration value = "clay" ></enumeration>
-            <enumeration value = "silt"></enumeration>
-            <enumeration value = "sandy"></enumeration>
-        </restriction>
-    </simpleType>
+            <element name="origin" type="originc"/>
+            <element name="visual-parametrs" type="visual-parameterstype"/>
 
-    <complexType name = "origin">
+        </sequence>
+    </xs:complexType>
+
+    <attribute name = "id" type="string">
+    </attribute>
+    <complexType name="originc">
         <sequence>
             <element name="country" type="string"></element>
             <element name="province" type="string"></element>
         </sequence>
     </complexType>
 
-    <complexType name="visual-parameters">
+    <complexType name="visual-parameterstype">
         <sequence>
             <element name="color-stem" type="positiveInteger"/>
             <element name="color-leaves" type="positiveInteger"/>
             <element name="average-height" type="positiveInteger"/>
         </sequence>
-    </complexType >
-
+    </complexType>
 </schema>
