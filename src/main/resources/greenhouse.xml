@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <flower>
-        <name>Rose</name>
+    <Flower>
+        <Name>Rose</Name>
         <quantity>45</quantity>
         <price>450</price>
         <soil>clay</soil>
@@ -30,4 +30,4 @@
                 <max>200</max>
             </waterInWeek>
         </growingTips>
-    </flower>
+    </Flower>

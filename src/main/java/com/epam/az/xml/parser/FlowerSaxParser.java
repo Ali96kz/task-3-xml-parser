@@ -1,8 +1,8 @@
 package com.epam.az.xml.parser;
 
-import com.epam.az.xml.FlowerStack;
 import com.epam.az.xml.entity.AliveFlower;
 import com.epam.az.xml.entity.BaseEntity;
+import com.epam.az.xml.entity.FlowerStack;
 import com.epam.az.xml.entity.GreenHouse;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -48,19 +48,25 @@ public class FlowerSaxParser implements XmlParser {
         Method method;
         AliveFlower aliveFlower = new AliveFlower();
         FlowerStack<Object> flowerStack = new FlowerStack();
-
-        {
-            flowerStack.push(aliveFlower);
-        }
+        boolean init = false;
 
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+            if (init == false) {
+                flowerStack.push(aliveFlower);
+                flowerStack.setCount(150);
+                init = true;
+            }
             try {
-                method = flowerStack.getLast().getClass().getMethod("set" + qName);
-                clazz = method.getReturnType();
-                if (!clazz.isPrimitive()) {
+                Method getMethod = flowerStack.getLast().getClass().getMethod("get" + qName, null);
+                method = flowerStack.getLast().getClass().getMethod("set" + qName, getMethod.getReturnType());
+                clazz = method.getParameterTypes()[0];
+
+                if (!clazz.isPrimitive() && clazz != Object.class) {
                     flowerStack.push(clazz.newInstance());
+                    flowerStack.setCount(clazz.getDeclaredMethods().length);
                 }
+
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             } catch (InstantiationException e) {
@@ -68,6 +74,7 @@ public class FlowerSaxParser implements XmlParser {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
+
         }
 
         @Override
@@ -77,21 +84,27 @@ public class FlowerSaxParser implements XmlParser {
 
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
-            Object value = stringBuilderToObjectType(stringBuilder, clazz);
-            invokeMethodByName(value, flowerStack.getLast());
-            flowerStack.pop();//TODO stack delete object early
+            Object value;
+            if (flowerStack.getLastQuantity() == 0) {
+                value = flowerStack.getLast();
+            } else {
+                value = stringBuilderToObjectType(stringBuilder, clazz);
+            }
+
+            invokeMethodByName(flowerStack.getLast(), value);
+            flowerStack.pop();
             stringBuilder = new StringBuilder();
         }
 
         public Object stringBuilderToObjectType(StringBuilder stringBuilder, Class aclass) {
-            if (aclass.getTypeName() == "int") {
+            if (aclass.getName() == "int") {
                 int result = Integer.parseInt(stringBuilder.toString());
                 return result;
             }
             return stringBuilder.toString();
         }
 
-        private void invokeMethodByName(Object value, Object inputClass) {
+        private void invokeMethodByName(Object inputClass, Object value) {
             try {
                 method.invoke(inputClass, value);
             } catch (IllegalAccessException e) {

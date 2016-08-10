@@ -11,6 +11,12 @@ public class AliveFlower extends PresentFlower {
     public String getStr() {
         return str;
     }
+    public void setFlower(Object flower){
+
+    }
+    public Object getFlower(){
+        return new Object();
+    }
 
     public void setStr(String str) {
         this.str = str;
