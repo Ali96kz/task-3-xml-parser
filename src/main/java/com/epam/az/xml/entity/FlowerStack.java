@@ -33,7 +33,6 @@ public class FlowerStack<E> {
         if(values.get(values.size()-1) instanceof AliveFlower){
             return 3;
         }
-        System.out.println(values.size()+" " + counts.size());
         return counts.get(values.size()-1);
     }
 }

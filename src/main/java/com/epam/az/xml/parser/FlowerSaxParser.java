@@ -1,7 +1,6 @@
 package com.epam.az.xml.parser;
 
 import com.epam.az.xml.entity.AliveFlower;
-import com.epam.az.xml.entity.BaseEntity;
 import com.epam.az.xml.entity.FlowerStack;
 import com.epam.az.xml.entity.GreenHouse;
 import org.xml.sax.Attributes;
@@ -17,12 +16,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class FlowerSaxParser implements XmlParser {
-    GreenHouse greenHouse = new GreenHouse();
-    BaseEntity baseEntity = new AliveFlower();
+    FlowerStack<Object> flowerStack = new FlowerStack();
 
     @Override
     public GreenHouse parseXml(String path) {
         try {
+            flowerStack.push(new AliveFlower());
+            flowerStack.setCount(150);
             File inputFile = new File("./src/main/resources/greenhouse.xml");
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
@@ -43,26 +43,17 @@ public class FlowerSaxParser implements XmlParser {
     }
 
     class SaxHandler extends DefaultHandler {
-        StringBuilder stringBuilder = new StringBuilder();
-        Class clazz;
-        Method method;
-        AliveFlower aliveFlower = new AliveFlower();
-        FlowerStack<Object> flowerStack = new FlowerStack();
-        boolean init = false;
+        private StringBuilder stringBuilder = new StringBuilder();
+        private Class clazz;
+        private Method method;
 
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-            if (init == false) {
-                flowerStack.push(aliveFlower);
-                flowerStack.setCount(150);
-                init = true;
-            }
             try {
                 Method getMethod = flowerStack.getLast().getClass().getMethod("get" + qName, null);
                 method = flowerStack.getLast().getClass().getMethod("set" + qName, getMethod.getReturnType());
                 clazz = method.getParameterTypes()[0];
-
-                if (!clazz.isPrimitive() && clazz != Object.class) {
+                if (!clazz.isPrimitive() && clazz != Object.class && clazz != String.class) {
                     flowerStack.push(clazz.newInstance());
                     flowerStack.setCount(clazz.getDeclaredMethods().length);
                 }
@@ -98,7 +89,8 @@ public class FlowerSaxParser implements XmlParser {
 
         public Object stringBuilderToObjectType(StringBuilder stringBuilder, Class aclass) {
             if (aclass.getName() == "int") {
-                int result = Integer.parseInt(stringBuilder.toString());
+                String s = stringBuilder.toString().trim();
+                int result = Integer.parseInt(s);
                 return result;
             }
             return stringBuilder.toString();

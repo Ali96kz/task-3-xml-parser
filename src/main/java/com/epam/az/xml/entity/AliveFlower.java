@@ -3,23 +3,33 @@ package com.epam.az.xml.entity;
 public class AliveFlower extends PresentFlower {
     private int aliveDay;
     private GrowingTips growingTips;
-    String str;
+    private int quantity;
+
     public AliveFlower() {
+    }
+
+    public GrowingTips getGrowingTips() {
+        return growingTips;
+    }
+
+    public void setGrowingTips(GrowingTips growingTips) {
+        this.growingTips = growingTips;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
 
     }
 
-    public String getStr() {
-        return str;
-    }
     public void setFlower(Object flower){
 
     }
     public Object getFlower(){
         return new Object();
-    }
-
-    public void setStr(String str) {
-        this.str = str;
     }
 
     public int getAliveDay() {

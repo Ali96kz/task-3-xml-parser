@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <flower>
-        <name>Rose</name>
-        <quantity>45</quantity>
-        <price>450</price>
-        <soil>clay</soil>
-        <type>Alive</type>
+    <Flower>
+        <Name>Rose</Name>
+        <Quantity>45</Quantity>
+        <Price>450</Price>
+        <Soil>clay</Soil>
+        <Type>Alive</Type>
 
-        <description>This is short description about flower</description>
+        <Description>This is short description about flower</Description>
 
-        <origin>
-            <country>KZ</country>
-            <province>astana</province>
-        </origin>
+        <Origin>
+            <Country>KZ</Country>
+            <Province>astana</Province>
+        </Origin>
 
         <visualParametrs>
             <color-steam>red</color-steam>
@@ -30,4 +30,4 @@
                 <max>200</max>
             </waterInWeek>
         </growingTips>
-    </flower>
+    </Flower>
