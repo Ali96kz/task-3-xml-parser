@@ -22,7 +22,6 @@ public class FlowerSaxParser implements XmlParser {
     public GreenHouse parseXml(String path) {
         try {
             flowerStack.push(new AliveFlower());
-            flowerStack.setCount(150);
             File inputFile = new File("./src/main/resources/greenhouse.xml");
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
@@ -38,9 +37,6 @@ public class FlowerSaxParser implements XmlParser {
         return null;
     }
 
-    public void invokeMethodByName(String name) {
-
-    }
 
     class SaxHandler extends DefaultHandler {
         private StringBuilder stringBuilder = new StringBuilder();
@@ -50,12 +46,14 @@ public class FlowerSaxParser implements XmlParser {
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
             try {
-                Method getMethod = flowerStack.getLast().getClass().getMethod("get" + qName, null);
-                method = flowerStack.getLast().getClass().getMethod("set" + qName, getMethod.getReturnType());
+                Method getMethod = flowerStack.getLast().getClass().getMethod("get" + upFirstChar(qName), null);
+                System.out.println(upFirstChar(qName));
+                method = flowerStack.getLast().getClass().getMethod("set" + upFirstChar(qName), getMethod.getReturnType());
                 clazz = method.getParameterTypes()[0];
                 if (!clazz.isPrimitive() && clazz != Object.class && clazz != String.class) {
-                    flowerStack.push(clazz.newInstance());
-                    flowerStack.setCount(clazz.getDeclaredMethods().length);
+                    Object b = clazz.newInstance();
+                    flowerStack.push(b);
+                    pushObjectInStack(clazz.getDeclaredMethods(), b);
                 }
 
             } catch (NoSuchMethodException e) {
@@ -75,15 +73,8 @@ public class FlowerSaxParser implements XmlParser {
 
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
-            Object value;
-            if (flowerStack.getLastQuantity() == 0) {
-                value = flowerStack.getLast();
-            } else {
-                value = stringBuilderToObjectType(stringBuilder, clazz);
-            }
-
-            invokeMethodByName(flowerStack.getLast(), value);
-            flowerStack.pop();
+            Object value = stringBuilderToObjectType(stringBuilder, clazz);
+            invokeMethodByName(flowerStack.pop(), value);
             stringBuilder = new StringBuilder();
         }
 
@@ -96,6 +87,14 @@ public class FlowerSaxParser implements XmlParser {
             return stringBuilder.toString();
         }
 
+        public void pushObjectInStack(Method[] methods, Object object) {
+            for (Method method1 : methods) {
+                if (method1.getName().startsWith("get")) {
+                    flowerStack.push(object);
+                }
+            }
+        }
+
         private void invokeMethodByName(Object inputClass, Object value) {
             try {
                 method.invoke(inputClass, value);
@@ -104,6 +103,14 @@ public class FlowerSaxParser implements XmlParser {
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
             }
+        }
+        public String upFirstChar(String str){
+            int letter = str.charAt(0);
+            letter -= 32;
+            char[] array = str.toCharArray();
+            array[0] =  (char) letter;
+            str = new String(array);
+            return str;
         }
     }
 }

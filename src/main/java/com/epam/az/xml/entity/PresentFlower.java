@@ -9,4 +9,12 @@ public abstract class PresentFlower extends Flower {
     public void setHeight(int height) {
         this.height = height;
     }
+
+    public FlowerVisualParameters getVisualParameters() {
+        return visualParameters;
+    }
+
+    public void setVisualParameters(FlowerVisualParameters visualParameters) {
+        this.visualParameters = visualParameters;
+    }
 }
