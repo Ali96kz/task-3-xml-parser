@@ -23,4 +23,7 @@ public class FlowerStack<E> {
         return values.get(values.size() - 1);
     }
 
+    public List<E> getValues() {
+        return values;
+    }
 }

@@ -27,7 +27,7 @@ public class GrowingTips implements DescribeFlower{
         this.temperature = temperature;
     }
 
-    public boolean isLovelight() {
+    public boolean getLovelight() {
         return lovelight;
     }
 

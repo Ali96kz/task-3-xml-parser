@@ -20,8 +20,9 @@ public class FlowerSaxParser implements XmlParser {
 
     @Override
     public GreenHouse parseXml(String path) {
+        AliveFlower aliveFlower = new AliveFlower();
         try {
-            flowerStack.push(new AliveFlower());
+            flowerStack.push(aliveFlower);
             File inputFile = new File("./src/main/resources/greenhouse.xml");
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
@@ -34,7 +35,10 @@ public class FlowerSaxParser implements XmlParser {
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
-        return null;
+        GreenHouse greenHouse = new GreenHouse();
+        greenHouse.add(aliveFlower);
+        return greenHouse;
+
     }
 
 
@@ -46,14 +50,12 @@ public class FlowerSaxParser implements XmlParser {
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
             try {
-                System.out.println(upFirstChar(qName)+" <----");
                 Method getMethod = flowerStack.getLast().getClass().getMethod("get" + upFirstChar(qName), null);
-                System.out.println(upFirstChar(qName));
                 method = flowerStack.getLast().getClass().getMethod("set" + upFirstChar(qName), getMethod.getReturnType());
-                clazz = method.getParameterTypes()[0];
+                clazz = getMethod.getReturnType();
                 if (!clazz.isPrimitive() && clazz != Object.class && clazz != String.class) {
+
                     Object b = clazz.newInstance();
-                    flowerStack.push(b);
                     pushObjectInStack(clazz.getDeclaredMethods(), b);
                 }
 
@@ -74,16 +76,26 @@ public class FlowerSaxParser implements XmlParser {
 
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
-            Object value = stringBuilderToObjectType(stringBuilder, clazz);
-            invokeMethodByName(flowerStack.pop(), value);
+            if (qName.equalsIgnoreCase(flowerStack.getLast().getClass().getSimpleName()) && !qName.equalsIgnoreCase("flower")) {
+                Object value = flowerStack.pop();
+                System.out.println(value.getClass().getSimpleName());
+                invokeMethodByName(flowerStack.pop(), value);
+            } else {
+                Object value = stringBuilderToObjectType(stringBuilder, clazz);
+                invokeMethodByName(flowerStack.pop(), value);
+            }
             stringBuilder = new StringBuilder();
         }
 
         public Object stringBuilderToObjectType(StringBuilder stringBuilder, Class aclass) {
+
             if (aclass.getName() == "int") {
                 String s = stringBuilder.toString().trim();
-                int result = Integer.parseInt(s);
-                return result;
+                try {
+                    int result = Integer.parseInt(s);
+                    return result;
+                } catch (NumberFormatException e) {
+                }
             }
             return stringBuilder.toString();
         }
@@ -94,24 +106,42 @@ public class FlowerSaxParser implements XmlParser {
                     flowerStack.push(object);
                 }
             }
+            flowerStack.push(object);
         }
 
         private void invokeMethodByName(Object inputClass, Object value) {
+          /*  System.out.println("---------------------------\n"+
+                    "method  = " + method.getName() + " inputClass = " + inputClass.getClass()
+                    + " value = " + value + " value is primitive" + value.getClass()
+            +"-------------------------------\n");*/
+            Class aClass = value.getClass();
             try {
-                method.invoke(inputClass, value);
+                if (!aClass.isPrimitive() && aClass != String.class && aClass != Integer.class) {
+                    System.out.println("was");
+                    Method getMethod = flowerStack.getLast().getClass().getMethod("get" + value.getClass().getSimpleName(), null);
+                    method = flowerStack.getLast().getClass().getMethod("set" + value.getClass().getSimpleName(), getMethod.getReturnType());
+                    method.invoke(inputClass, value);
+
+                } else if (value.getClass().isPrimitive() || value.getClass() == String.class || value.getClass() == Integer.class) {
+                    method.invoke(inputClass, value);
+                }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
+            } catch (IllegalArgumentException e) {
+                System.out.println();
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
             }
         }
-        public String upFirstChar(String str){
+
+        public String upFirstChar(String str) {
             String result = new String(String.valueOf(str.charAt(0)));
             result = result.toUpperCase();
-
-            char [] sd = str.toCharArray();
+            char[] sd = str.toCharArray();
             sd[0] = result.charAt(0);
-
             str = new String(sd);
             return str;
         }

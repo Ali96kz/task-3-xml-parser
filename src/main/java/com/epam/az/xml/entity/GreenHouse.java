@@ -7,7 +7,7 @@ import java.util.List;
 
 @XmlRootElement(name = "greenhouse")
 public class GreenHouse {
-    private List<AliveFlower> flowers;
+    private List<AliveFlower> flowers = new ArrayList<>();
 
     public GreenHouse() {
     }
@@ -45,4 +45,5 @@ public class GreenHouse {
         }
         return result;
     }
+
 }
