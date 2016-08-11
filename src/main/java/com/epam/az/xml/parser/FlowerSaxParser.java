@@ -86,7 +86,6 @@ public class FlowerSaxParser implements XmlParser {
 
             } else if (qName.equalsIgnoreCase(flowerStack.getLast().getClass().getSimpleName())) {
                 Object value = flowerStack.pop();
-                System.out.println(value.getClass().getSimpleName());
                 invokeMethodByName(flowerStack.pop(), value);
             } else {
                 Object value = stringBuilderToObjectType(stringBuilder, clazz);
@@ -125,7 +124,6 @@ public class FlowerSaxParser implements XmlParser {
             Class aClass = value.getClass();
             try {
                 if (!aClass.isPrimitive() && aClass != String.class && aClass != Integer.class) {
-                    System.out.println("was");
                     Method getMethod = flowerStack.getLast().getClass().getMethod("get" + value.getClass().getSimpleName(), null);
                     method = flowerStack.getLast().getClass().getMethod("set" + value.getClass().getSimpleName(), getMethod.getReturnType());
                     method.invoke(inputClass, value);
