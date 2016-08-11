@@ -11,13 +11,9 @@ public class GreenHouse {
 
     public GreenHouse() {
     }
-
-    public List<AliveFlower> getFlower() {
-        return flowers;
-    }
     @XmlElement
-    public void setFlower(List<AliveFlower> flowers) {
-        this.flowers = flowers;
+    public void setFlower(AliveFlower flower) {
+        flowers.add(flower);
     }
 
     @Override
@@ -28,6 +24,9 @@ public class GreenHouse {
         }
 
         return stringBuilder.toString();
+    }
+    public AliveFlower getFlower(){
+        return flowers.get(flowers.size()-1);
     }
     public Flower get(int index){
         return flowers.get(index);
@@ -45,5 +44,7 @@ public class GreenHouse {
         }
         return result;
     }
-
+    public int size(){
+        return flowers.size();
+    }
 }

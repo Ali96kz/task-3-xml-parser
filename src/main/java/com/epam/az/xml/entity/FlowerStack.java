@@ -9,10 +9,11 @@ public class FlowerStack<E> {
     public E pop() {
         if (values.size() == 1) {
             return values.get(0);
+        }else {
+            E e = values.get(values.size() - 1);
+            values.remove(values.size() - 1);
+            return e;
         }
-        E e = values.get(values.size() - 1);
-        values.remove(values.size() - 1);
-        return e;
     }
 
     public void push(E item) {
@@ -20,10 +21,15 @@ public class FlowerStack<E> {
     }
 
     public E getLast() {
-        return values.get(values.size() - 1);
+        if(values.size() > 1)
+            return values.get(values.size() - 1);
+        return values.get(0);
     }
 
     public List<E> getValues() {
         return values;
+    }
+    public int size(){
+        return values.size();
     }
 }
