@@ -117,10 +117,6 @@ public class FlowerSaxParser implements XmlParser {
         }
 
         private void invokeMethodByName(Object inputClass, Object value) {
-          /*  System.out.println("---------------------------\n"+
-                    "method  = " + method.getName() + " inputClass = " + inputClass.getClass()
-                    + " value = " + value + " value is primitive" + value.getClass()
-            +"-------------------------------\n");*/
             Class aClass = value.getClass();
             try {
                 if (!aClass.isPrimitive() && aClass != String.class && aClass != Integer.class) {
