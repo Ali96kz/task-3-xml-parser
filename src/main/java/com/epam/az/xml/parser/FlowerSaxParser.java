@@ -46,6 +46,7 @@ public class FlowerSaxParser implements XmlParser {
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
             try {
+                System.out.println(upFirstChar(qName)+" <----");
                 Method getMethod = flowerStack.getLast().getClass().getMethod("get" + upFirstChar(qName), null);
                 System.out.println(upFirstChar(qName));
                 method = flowerStack.getLast().getClass().getMethod("set" + upFirstChar(qName), getMethod.getReturnType());
@@ -105,11 +106,13 @@ public class FlowerSaxParser implements XmlParser {
             }
         }
         public String upFirstChar(String str){
-            int letter = str.charAt(0);
-            letter -= 32;
-            char[] array = str.toCharArray();
-            array[0] =  (char) letter;
-            str = new String(array);
+            String result = new String(String.valueOf(str.charAt(0)));
+            result = result.toUpperCase();
+
+            char [] sd = str.toCharArray();
+            sd[0] = result.charAt(0);
+
+            str = new String(sd);
             return str;
         }
     }

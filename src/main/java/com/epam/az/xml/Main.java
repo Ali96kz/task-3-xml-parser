@@ -7,9 +7,8 @@ public class Main {
     public static void main(String[] args) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
         FlowerSaxParser flowerSaxParser = new FlowerSaxParser();
         flowerSaxParser.parseXml("./src/main/resources/greenhouse.xml");
-//        todO adD VALIDATION
-//        todo UPfIRSTcHAR
-//        TODO DELETE STRAIGHT RELATIVE FROM PARSER
+//       TODO adD VALIDATION
+//        TODO DELETE hard RELATIVE FROM PARSER
 //        TODO aDD STAX DOMpARSER
     }
 }
