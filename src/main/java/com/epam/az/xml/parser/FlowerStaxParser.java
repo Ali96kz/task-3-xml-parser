@@ -1,5 +1,6 @@
 package com.epam.az.xml.parser;
 
+import com.epam.az.xml.entity.AliveFlower;
 import com.epam.az.xml.entity.FlowerStack;
 import com.epam.az.xml.entity.GreenHouse;
 
@@ -21,6 +22,7 @@ public class FlowerStaxParser extends FlowersXmlParser {
         XMLInputFactory factory = XMLInputFactory.newInstance();
         FlowerStack flowerStack = new FlowerStack();
         GreenHouse greenHouse = new GreenHouse();
+        flowerStack.push(new AliveFlower());
         try {
             XMLEventReader eventReader = factory.createXMLEventReader(new FileReader(path));
             while (eventReader.hasNext()) {

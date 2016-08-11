@@ -21,11 +21,14 @@ public class FlowersSaxParser extends FlowersXmlParser {
     @Override
     public GreenHouse parseXml(String path) {
         try {
+            flowerStack.push(new AliveFlower());
             File inputFile = new File("./src/main/resources/greenhouse.xml");
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
             SaxHandler userhandler = new SaxHandler();
             saxParser.parse(inputFile, userhandler);
+
+
         } catch (SAXException | IOException | ParserConfigurationException e) {
             e.printStackTrace();
         }
