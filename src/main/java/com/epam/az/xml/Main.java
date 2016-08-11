@@ -9,6 +9,7 @@ public class Main {
     public static void main(String[] args) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
         FlowerSaxParser flowerSaxParser = new FlowerSaxParser();
         GreenHouse greenHouse = flowerSaxParser.parseXml("./src/main/resources/greenhouse.xml");
+        Class aclass = GreenHouse.class;
 
     }
 }

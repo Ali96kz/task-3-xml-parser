@@ -7,6 +7,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.swing.text.html.parser.Parser;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -27,13 +28,10 @@ public class FlowerSaxParser implements XmlParser {
             SAXParser saxParser = factory.newSAXParser();
             SaxHandler userhandler = new SaxHandler();
             saxParser.parse(inputFile, userhandler);
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
+        } catch (SAXException | IOException | ParserConfigurationException e) {
             e.printStackTrace();
         }
+
         return greenHouse;
 
     }
@@ -41,6 +39,7 @@ public class FlowerSaxParser implements XmlParser {
 
     class SaxHandler extends DefaultHandler {
         private StringBuilder stringBuilder = new StringBuilder();
+
         private Class clazz;
         private Method method;
 
@@ -63,11 +62,7 @@ public class FlowerSaxParser implements XmlParser {
                     }
                 }
 
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
+            } catch (NoSuchMethodException | InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
 
@@ -86,20 +81,18 @@ public class FlowerSaxParser implements XmlParser {
 
             } else if (qName.equalsIgnoreCase(flowerStack.getLast().getClass().getSimpleName())) {
                 Object value = flowerStack.pop();
-                invokeMethodByName(flowerStack.pop(), value);
+                invokeSetterForObject(flowerStack.pop(), value);
             } else {
-                Object value = stringBuilderToObjectType(stringBuilder, clazz);
-                invokeMethodByName(flowerStack.pop(), value);
+                Object value = stringToObjectType(stringBuilder.toString().trim(), clazz);
+                invokeSetterForPrimitive(flowerStack.pop(), value);
             }
             stringBuilder = new StringBuilder();
         }
 
-        public Object stringBuilderToObjectType(StringBuilder stringBuilder, Class aclass) {
-
+        public Object stringToObjectType(String str, Class aclass) {
             if (aclass.getName() == "int") {
-                String s = stringBuilder.toString().trim();
                 try {
-                    int result = Integer.parseInt(s);
+                    int result = Integer.parseInt(str);
                     return result;
                 } catch (NumberFormatException e) {
                 }
@@ -116,25 +109,24 @@ public class FlowerSaxParser implements XmlParser {
             flowerStack.push(object);
         }
 
-        private void invokeMethodByName(Object inputClass, Object value) {
+        private void invokeSetterForPrimitive(Object inputClass, Object value) {
             Class aClass = value.getClass();
             try {
                 if (!aClass.isPrimitive() && aClass != String.class && aClass != Integer.class) {
-                    Method getMethod = flowerStack.getLast().getClass().getMethod("get" + value.getClass().getSimpleName(), null);
-                    method = flowerStack.getLast().getClass().getMethod("set" + value.getClass().getSimpleName(), getMethod.getReturnType());
-                    method.invoke(inputClass, value);
 
-                } else if (value.getClass().isPrimitive() || value.getClass() == String.class || value.getClass() == Integer.class) {
+                } else  {
                     method.invoke(inputClass, value);
                 }
-            } catch (IllegalAccessException e) {
+            } catch (IllegalAccessException | InvocationTargetException | IllegalArgumentException e) {
                 e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            } catch (IllegalArgumentException e) {
-                System.out.println();
-                e.printStackTrace();
-            } catch (NoSuchMethodException e) {
+            }
+        }
+        public void invokeSetterForObject(Object inputClass, Object value){
+            try {
+                Method getMethod = inputClass.getClass().getMethod("get" + value.getClass().getSimpleName(), null);
+                method = inputClass.getClass().getMethod("set" + value.getClass().getSimpleName(), getMethod.getReturnType());
+                method.invoke(inputClass, value);
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
