@@ -10,7 +10,6 @@ public class FlowerStack<E> {
         if (values.size() == 1) {
             return values.get(0);
         }else {
-            System.out.println("was");
             E e = values.get(values.size() - 1);
             values.remove(values.size() - 1);
             return e;

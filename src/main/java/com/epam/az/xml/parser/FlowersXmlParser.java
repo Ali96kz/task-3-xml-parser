@@ -48,7 +48,8 @@ public abstract class FlowersXmlParser implements XmlParser{
             Object value = flowerStack.pop();
             invokeSetterForObject(flowerStack.pop(), value);
         } else {
-            Object value = stringToObjectType(stringBuilder.toString().trim(), clazz);
+            String characterValue = stringBuilder.toString().replaceAll("\\s","");
+            Object value = stringToObjectType(characterValue, clazz);
             invokeSetterForPrimitive(flowerStack.pop(), value);
         }
         stringBuilder = new StringBuilder();

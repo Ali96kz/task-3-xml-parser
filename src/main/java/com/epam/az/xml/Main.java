@@ -10,10 +10,11 @@ import java.lang.reflect.InvocationTargetException;
 
 public class Main {
     public static void main(String[] args) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
-        FlowersXmlParser parser = new FlowerStaxParser();
-        FlowersXmlParser parsers = new FlowersSaxParser();
-        GreenHouse greenHousse = parsers.parseXml("./src/main/resources/greenhouse.xml");
-        System.out.println(greenHousse.get(0).getName()+" " + greenHousse.get(1).getName());
+        FlowersXmlParser flowerStaxparser = new FlowerStaxParser();
+        FlowersXmlParser flowersSaxParser = new FlowersSaxParser();
+        GreenHouse staxGreenHouse = flowerStaxparser.parseXml("./src/main/resources/greenhouse.xml");
+        GreenHouse saxGreenHouse = flowersSaxParser.parseXml("./src/main/resources/greenhouse.xml");
+
     }
 }
 
