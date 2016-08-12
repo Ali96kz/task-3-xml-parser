@@ -1,7 +1,6 @@
 package com.epam.az.xml.parser;
 
 import com.epam.az.xml.entity.AliveFlower;
-import com.epam.az.xml.entity.Flower;
 import com.epam.az.xml.entity.FlowerStack;
 import com.epam.az.xml.entity.GreenHouse;
 
@@ -55,11 +54,18 @@ public abstract class FlowersXmlParser implements XmlParser{
     }
 
     public Object stringToObjectType(String str, Class aclass) {
-        if (aclass.getName() == "int") {
+        if (aclass.getSimpleName() == "int") {
             try {
                 int result = Integer.parseInt(str);
                 return result;
             } catch (NumberFormatException e) {
+            }
+        }
+        if(aclass.getSimpleName() == "boolean"){
+            if(str.charAt(0) == 't'){
+                return true;
+            }else {
+                return false;
             }
         }
         return stringBuilder.toString();

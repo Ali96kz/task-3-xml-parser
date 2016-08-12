@@ -1,7 +1,7 @@
 package com.epam.az.xml.entity;
 public abstract class PresentFlower extends Flower {
     private int height;
-    private FlowerVisualParameters visualParameters;
+    private VisualParameters visualParameters;
     public int getHeight() {
         return height;
     }
@@ -10,11 +10,11 @@ public abstract class PresentFlower extends Flower {
         this.height = height;
     }
 
-    public FlowerVisualParameters getVisualParameters() {
+    public VisualParameters getVisualParameters() {
         return visualParameters;
     }
 
-    public void setVisualParameters(FlowerVisualParameters visualParameters) {
+    public void setVisualParameters(VisualParameters visualParameters) {
         this.visualParameters = visualParameters;
     }
 }

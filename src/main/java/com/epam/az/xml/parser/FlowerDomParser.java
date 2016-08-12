@@ -12,7 +12,7 @@ import java.io.File;
 import java.lang.reflect.Method;
 
 
-public class FlowerDomParser implements XmlParser {
+public class FlowerDomParser extends FlowersXmlParser{
 
     @Override
     public GreenHouse parseXml(String path) {
@@ -25,18 +25,22 @@ public class FlowerDomParser implements XmlParser {
             doc.getDocumentElement().normalize();
 
             NodeList nList = doc.getElementsByTagName("flowers");
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-                Node nNode = nList.item(temp);
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) nNode;
-                    eElement.getElementsByTagName("").item(0).getTextContent();
-                }
-            }
 
+            extractFromNodeList(nList);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return greenHouse;
+    }
+    public void extractFromNodeList(NodeList nodeList){
+
+        for (int temp = 0; temp < nodeList.getLength(); temp++) {
+            Node nNode = nodeList.item(temp);
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nNode;
+            }
+        }
+
     }
 
 }
