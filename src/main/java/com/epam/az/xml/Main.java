@@ -13,7 +13,6 @@ public class Main {
         FlowersXmlParser flowerStaxparser = new FlowerStaxParser();
         FlowersXmlParser parsers = new FlowersSaxParser();
         GreenHouse staxGreenHouse = flowerStaxparser.parseXml("./src/main/resources/greenhouse.xml");
-        GreenHouse saxGreenHouse = parsers.parseXml("./src/main/resources/greenhouse.xml");
 
     }
 }
