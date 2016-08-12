@@ -12,8 +12,6 @@ public class Main {
     public static void main(String[] args) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
         FlowersXmlParser flowerStaxparser = new FlowerStaxParser();
         FlowersXmlParser parsers = new FlowersSaxParser();
-        GreenHouse staxGreenHouse = flowerStaxparser.parseXml("./src/main/resources/greenhouse.xml");
-
     }
 }
 
