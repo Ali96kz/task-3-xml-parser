@@ -12,8 +12,8 @@ public abstract class FlowersXmlParser implements XmlParser{
     protected StringBuilder stringBuilder = new StringBuilder();
     protected Class clazz;
     protected Method method;
-
-    protected void elementStart(FlowerStack flowerStack, String qName){
+    FlowerStack flowerStack = new FlowerStack();
+    protected void elementStart(String qName){
         try {
             if (qName.equalsIgnoreCase("flower")) {
                 flowerStack = new FlowerStack();
@@ -22,6 +22,7 @@ public abstract class FlowersXmlParser implements XmlParser{
             } else if (qName.equalsIgnoreCase("flowers")) {
 
             } else {
+
                 Method getMethod = flowerStack.getLast().getClass().getMethod("get" + upFirstChar(qName), null);
                 method = flowerStack.getLast().getClass().getMethod("set" + upFirstChar(qName), getMethod.getReturnType());
                 clazz = getMethod.getReturnType();
@@ -38,7 +39,7 @@ public abstract class FlowersXmlParser implements XmlParser{
     protected void chars(String string){
         stringBuilder.append(string);
     }
-    protected void elementEnd(FlowerStack flowerStack, String qName, GreenHouse greenHouse){
+    protected void elementEnd(String qName, GreenHouse greenHouse){
         if (qName.equalsIgnoreCase("flower")) {
             greenHouse.add((AliveFlower) flowerStack.pop());
         } else if (qName.equalsIgnoreCase("flowers")) {
