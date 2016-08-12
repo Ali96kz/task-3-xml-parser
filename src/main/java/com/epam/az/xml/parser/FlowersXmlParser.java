@@ -13,13 +13,16 @@ public abstract class FlowersXmlParser implements XmlParser{
     protected Class clazz;
     protected Method method;
     FlowerStack flowerStack = new FlowerStack();
+    //TODO get this parameters from root class
     String rootName = "flower", listName = "flowers";
+    Class rootClass = AliveFlower.class;
+
     protected void elementStart(String qName){
         try {
             if (qName.equalsIgnoreCase(rootName)) {
                 flowerStack = new FlowerStack();
-                AliveFlower aliveFlower = new AliveFlower();
-                flowerStack.push(aliveFlower);
+                Object item=  rootClass.newInstance();
+                flowerStack.push(item);
             } else if (qName.equalsIgnoreCase(listName)) {
 
             } else {
@@ -41,9 +44,9 @@ public abstract class FlowersXmlParser implements XmlParser{
         stringBuilder.append(string);
     }
     protected void elementEnd(String qName, GreenHouse greenHouse){
-        if (qName.equalsIgnoreCase("flower")) {
+        if (qName.equalsIgnoreCase(rootName)) {
             greenHouse.add((AliveFlower) flowerStack.pop());
-        } else if (qName.equalsIgnoreCase("flowers")) {
+        } else if (qName.equalsIgnoreCase(listName)) {
 
         } else if (qName.equalsIgnoreCase(flowerStack.getLast().getClass().getSimpleName())) {
             Object value = flowerStack.pop();
@@ -65,7 +68,7 @@ public abstract class FlowersXmlParser implements XmlParser{
             }
         }
         if(aclass.getSimpleName() == "boolean"){
-            if(str.charAt(0) == 't'){
+            if(str.charAt(0) == 't' && str.charAt(1) == 'r' && str.charAt(2) == 'u' && str.charAt(3) == 'e'){
                 return true;
             }else {
                 return false;
@@ -101,12 +104,10 @@ public abstract class FlowersXmlParser implements XmlParser{
     }
 
     protected String upFirstChar(String str) {
-        String result = new String(String.valueOf(str.charAt(0)));
-        result = result.toUpperCase();
-        char[] sd = str.toCharArray();
-        sd[0] = result.charAt(0);
-        str = new String(sd);
-        return str;
+        char[] charArray = str.toCharArray();
+        charArray[0] = Character.toUpperCase(charArray[0]);
+        String result = new String(charArray);
+        return result;
     }
 }
 
