@@ -13,13 +13,14 @@ public abstract class FlowersXmlParser implements XmlParser{
     protected Class clazz;
     protected Method method;
     FlowerStack flowerStack = new FlowerStack();
+    String rootName = "flower", listName = "flowers";
     protected void elementStart(String qName){
         try {
-            if (qName.equalsIgnoreCase("flower")) {
+            if (qName.equalsIgnoreCase(rootName)) {
                 flowerStack = new FlowerStack();
                 AliveFlower aliveFlower = new AliveFlower();
                 flowerStack.push(aliveFlower);
-            } else if (qName.equalsIgnoreCase("flowers")) {
+            } else if (qName.equalsIgnoreCase(listName)) {
 
             } else {
 

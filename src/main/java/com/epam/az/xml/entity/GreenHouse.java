@@ -16,6 +16,10 @@ public class GreenHouse {
         flowers.add(flower);
     }
 
+    public AliveFlower getFlower(){
+        return flowers.get(flowers.size()-1);
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -24,9 +28,6 @@ public class GreenHouse {
         }
 
         return stringBuilder.toString();
-    }
-    public AliveFlower getFlower(){
-        return flowers.get(flowers.size()-1);
     }
     public Flower get(int index){
         return flowers.get(index);
