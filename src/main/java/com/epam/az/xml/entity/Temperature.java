@@ -2,17 +2,18 @@ package com.epam.az.xml.entity;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class Temperature implements DescribeFlower{
+public class Temperature implements DescribeFlower {
     private int min;
     private int max;
 
-   public Temperature(){
+    public Temperature() {
 
-   }
+    }
 
     public int getMin() {
         return min;
     }
+
     @XmlElement
     public void setMin(int min) {
         this.min = min;
@@ -29,6 +30,6 @@ public class Temperature implements DescribeFlower{
 
     @Override
     public String toString() {
-        return min+" "+max;
+        return min + " " + max;
     }
 }

@@ -10,10 +10,10 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
 
-public class FlowerDomParser  extends FlowersXmlParser {
+public class FlowerDomParser extends FlowersXmlParser {
 
     @Override
-    public Object parseXml(Class rootClass, String rootList,String path) {
+    public Object parseXml(Class rootClass, String rootList, String path) {
         Flowers flowers = new Flowers();
         try {
             File inputFile = new File(path);

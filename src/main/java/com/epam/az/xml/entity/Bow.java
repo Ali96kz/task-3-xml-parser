@@ -1,4 +1,5 @@
 package com.epam.az.xml.entity;
+
 public class Bow extends Jewellery {
 
     //medium, low, big and another

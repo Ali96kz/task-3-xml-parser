@@ -1,14 +1,12 @@
 package com.epam.az.xml.entity;
 
-import javax.xml.bind.annotation.XmlElement;
-
 public class VisualParameters {
     private String colorSteam;
     private String colorLeaves;
     private int averageHeight;
 
 
-    public VisualParameters(){
+    public VisualParameters() {
     }
 
     public String getColorSteam() {
@@ -22,6 +20,7 @@ public class VisualParameters {
     public String getColorLeaves() {
         return colorLeaves;
     }
+
     public void setColorLeaves(String colorLeaves) {
         this.colorLeaves = colorLeaves;
     }
@@ -29,12 +28,13 @@ public class VisualParameters {
     public int getAverageHeight() {
         return averageHeight;
     }
+
     public void setAverageHeight(int averageHeight) {
         this.averageHeight = averageHeight;
     }
 
     @Override
     public String toString() {
-        return colorLeaves+" "+colorSteam+" "+averageHeight;
+        return colorLeaves + " " + colorSteam + " " + averageHeight;
     }
 }

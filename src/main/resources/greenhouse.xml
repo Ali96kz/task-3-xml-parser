@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flowers>
     <AliveFlower>
+        <id>1</id>
         <name>Rose</name>
         <quantity>45</quantity>
         <price>450</price>
@@ -32,7 +33,7 @@
         </growingTips>
     </AliveFlower>
     <AliveFlower>
-
+        <id>2</id>
         <name>Rossse</name>
         <quantity>45</quantity>
         <price>450</price>
@@ -54,7 +55,7 @@
         <growingTips>
             <temperature>
                 <min>15</min>
-                <max>20</max>
+                <max>245</max>
             </temperature>
             <lovelight>true</lovelight>
             <waterInWeek>

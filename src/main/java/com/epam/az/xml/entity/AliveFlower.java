@@ -25,11 +25,12 @@ public class AliveFlower extends PresentFlower {
 
     }
 
-    public void setFlower(Object flower){
-
-    }
-    public Object getFlower(){
+    public Object getFlower() {
         return new Object();
+    }
+
+    public void setFlower(Object flower) {
+
     }
 
     public int getAliveDay() {

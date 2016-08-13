@@ -29,6 +29,6 @@ public class WaterInWeek {
 
     @Override
     public String toString() {
-        return min+" "+max;
+        return min + " " + max;
     }
 }

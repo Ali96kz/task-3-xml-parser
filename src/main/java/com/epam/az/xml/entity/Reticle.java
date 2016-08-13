@@ -1,4 +1,5 @@
 package com.epam.az.xml.entity;
+
 public class Reticle extends Jewellery {
     private int height;
     private int width;

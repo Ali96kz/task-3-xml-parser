@@ -9,7 +9,7 @@ public class FlowerStack<E> {
     public E pop() {
         if (values.size() == 1) {
             return values.get(0);
-        }else {
+        } else {
             E e = values.get(values.size() - 1);
             values.remove(values.size() - 1);
             return e;
@@ -21,7 +21,7 @@ public class FlowerStack<E> {
     }
 
     public E getLast() {
-        if(values.size() > 1)
+        if (values.size() > 1)
             return values.get(values.size() - 1);
         return values.get(0);
     }
@@ -29,7 +29,8 @@ public class FlowerStack<E> {
     public List<E> getValues() {
         return values;
     }
-    public int size(){
+
+    public int size() {
         return values.size();
     }
 }

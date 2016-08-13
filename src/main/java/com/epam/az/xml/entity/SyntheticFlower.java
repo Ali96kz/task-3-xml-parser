@@ -1,4 +1,5 @@
 package com.epam.az.xml.entity;
+
 public class SyntheticFlower extends PresentFlower {
     private String material;
 

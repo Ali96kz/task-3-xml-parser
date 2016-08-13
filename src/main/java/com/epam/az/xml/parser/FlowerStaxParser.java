@@ -1,7 +1,5 @@
 package com.epam.az.xml.parser;
 
-import com.epam.az.xml.entity.Flowers;
-
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -13,7 +11,7 @@ import javax.xml.stream.events.XMLEvent;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-public class FlowerStaxParser  extends FlowersXmlParser {
+public class FlowerStaxParser extends FlowersXmlParser {
     @Override
     public Object parseXml(Class rootClass, String rootListName, String path) {
         configureParser(rootClass, rootListName);

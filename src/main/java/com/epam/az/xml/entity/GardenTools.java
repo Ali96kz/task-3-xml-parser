@@ -1,4 +1,5 @@
 package com.epam.az.xml.entity;
+
 public class GardenTools extends BaseEntity {
     private int garantDay;
 

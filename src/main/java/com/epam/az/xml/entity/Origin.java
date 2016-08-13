@@ -25,7 +25,7 @@ public class Origin {
 
     @Override
     public String toString() {
-        return country+" "+province;
+        return country + " " + province;
     }
 }
 

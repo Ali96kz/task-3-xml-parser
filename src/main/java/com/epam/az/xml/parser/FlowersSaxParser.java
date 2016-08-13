@@ -32,7 +32,7 @@ public class FlowersSaxParser extends FlowersXmlParser {
 
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-            elementStart( qName);
+            elementStart(qName);
         }
 
         @Override
@@ -42,7 +42,7 @@ public class FlowersSaxParser extends FlowersXmlParser {
 
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
-            elementEnd( qName);
+            elementEnd(qName);
         }
     }
 }

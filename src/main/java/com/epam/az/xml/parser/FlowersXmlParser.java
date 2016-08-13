@@ -28,8 +28,8 @@ public abstract class FlowersXmlParser implements XmlParser {
             rootName = rootClass.getSimpleName();
             rootInstance = rootClass.newInstance();
 
-            Class returnType = rootClass.getMethod("get" , int.class).getReturnType();
-            addObjectInList = rootClass.getDeclaredMethod("add" , returnType);
+            Class returnType = rootClass.getMethod("get", int.class).getReturnType();
+            addObjectInList = rootClass.getDeclaredMethod("add", returnType);
 
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
@@ -42,9 +42,10 @@ public abstract class FlowersXmlParser implements XmlParser {
         }
     }
 
-    protected Object getResult(){
+    protected Object getResult() {
         return rootInstance;
     }
+
     protected void elementStart(String qName) {
         try {
             if (qName.equalsIgnoreCase(rootItemName)) {
@@ -130,7 +131,7 @@ public abstract class FlowersXmlParser implements XmlParser {
     protected void invokeSetterForObject(Object inputClass, Object value) {
         try {
             getSetterMethodForValue(inputClass.getClass(), value).invoke(inputClass, value);
-        } catch ( InvocationTargetException | IllegalAccessException e) {
+        } catch (InvocationTargetException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }
@@ -142,7 +143,7 @@ public abstract class FlowersXmlParser implements XmlParser {
         return result;
     }
 
-    private Method getSetterMethodForValue(Class aclass, Object value){
+    private Method getSetterMethodForValue(Class aclass, Object value) {
         Method setMethod = null;
         try {
             Method getMethod = aclass.getMethod("get" + value.getClass().getSimpleName(), null);

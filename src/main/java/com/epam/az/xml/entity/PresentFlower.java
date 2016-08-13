@@ -1,7 +1,9 @@
 package com.epam.az.xml.entity;
+
 public abstract class PresentFlower extends Flower {
     private int height;
     private VisualParameters visualParameters;
+
     public int getHeight() {
         return height;
     }

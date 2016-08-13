@@ -2,7 +2,7 @@ package com.epam.az.xml.entity;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class GrowingTips implements DescribeFlower{
+public class GrowingTips implements DescribeFlower {
     private WaterInWeek waterInWeek;
     private Temperature temperature;
     private boolean lovelight;
@@ -13,6 +13,7 @@ public class GrowingTips implements DescribeFlower{
     public WaterInWeek getWaterInWeek() {
         return waterInWeek;
     }
+
     @XmlElement(name = "water-in-week")
     public void setWaterInWeek(WaterInWeek waterInWeek) {
         this.waterInWeek = waterInWeek;
@@ -38,6 +39,6 @@ public class GrowingTips implements DescribeFlower{
 
     @Override
     public String toString() {
-        return temperature+" "+waterInWeek+" "+lovelight;
+        return temperature + " " + waterInWeek + " " + lovelight;
     }
 }
