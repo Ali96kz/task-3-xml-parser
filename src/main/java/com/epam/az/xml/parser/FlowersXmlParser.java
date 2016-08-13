@@ -4,8 +4,7 @@ import com.epam.az.xml.entity.AliveFlower;
 import com.epam.az.xml.entity.FlowerStack;
 import com.epam.az.xml.entity.GreenHouse;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import java.lang.reflect.*;
 
 
 public abstract class FlowersXmlParser implements XmlParser {
@@ -15,14 +14,17 @@ public abstract class FlowersXmlParser implements XmlParser {
     //TODO get this parameters from root class
 
     String rootItem = "flower", root = "flowers";
-    FlowerStack flowerStack = new FlowerStack();
-    Class rootItemClass = AliveFlower.class;
+    FlowerStack flowerStack ;
+    Class rootItemClass;
     Object rootInstance ;
     Method addObjectInList;
 
     public void configureParser(Class rootClass, String rootItem) {
         try {
-
+            Field field = rootClass.getField(rootItem);
+            ParameterizedType type = (ParameterizedType) field.getGenericType();
+            Type[] typeArguments = type.getActualTypeArguments();;
+            rootItemClass = (Class) typeArguments[0];
             Class returnType= rootClass.getMethod("get"+rootItem, null).getReturnType();
             addObjectInList = rootClass.getDeclaredMethod("add" + rootItem, returnType);
             rootInstance = rootClass.newInstance();
@@ -31,6 +33,8 @@ public abstract class FlowersXmlParser implements XmlParser {
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }
     }
