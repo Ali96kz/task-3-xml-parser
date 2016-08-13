@@ -1,6 +1,6 @@
 package com.epam.az.xml.parser;
 
-import com.epam.az.xml.entity.GreenHouse;
+import com.epam.az.xml.entity.Flowers;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -10,11 +10,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
 
-public class FlowerDomParser extends FlowersXmlParser {
+public class FlowerDomParser  extends FlowersXmlParser {
 
     @Override
-    public GreenHouse parseXml(String path) {
-        GreenHouse greenHouse = new GreenHouse();
+    public Object parseXml(Class rootClass, String rootList,String path) {
+        Flowers flowers = new Flowers();
         try {
             File inputFile = new File(path);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -28,7 +28,7 @@ public class FlowerDomParser extends FlowersXmlParser {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return greenHouse;
+        return getResult();
     }
 
     public void extractFromNodeList(NodeList nodeList) {

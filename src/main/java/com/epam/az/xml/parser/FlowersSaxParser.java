@@ -1,8 +1,5 @@
 package com.epam.az.xml.parser;
 
-import com.epam.az.xml.entity.AliveFlower;
-import com.epam.az.xml.entity.FlowerStack;
-import com.epam.az.xml.entity.GreenHouse;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -12,23 +9,23 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
 
 public class FlowersSaxParser extends FlowersXmlParser {
-    GreenHouse greenHouse = new GreenHouse();
 
     @Override
-    public GreenHouse parseXml(String path) {
+    public Object parseXml(Class rootClass, String rootlistName, String path) {
         try {
             File inputFile = new File("./src/main/resources/greenhouse.xml");
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser saxParser = factory.newSAXParser();
             SaxHandler userhandler = new SaxHandler();
+            configureParser(rootClass, rootlistName);
             saxParser.parse(inputFile, userhandler);
+
         } catch (SAXException | IOException | ParserConfigurationException e) {
             e.printStackTrace();
         }
-        return greenHouse;
+        return getResult();
     }
 
     class SaxHandler extends DefaultHandler {
@@ -45,7 +42,7 @@ public class FlowersSaxParser extends FlowersXmlParser {
 
         @Override
         public void endElement(String uri, String localName, String qName) throws SAXException {
-            elementEnd( qName, greenHouse);
+            elementEnd( qName);
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.epam.az.xml.parser;
 
-import com.epam.az.xml.entity.GreenHouse;
+import com.epam.az.xml.entity.Flowers;
 
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
@@ -13,11 +13,11 @@ import javax.xml.stream.events.XMLEvent;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-public class FlowerStaxParser extends FlowersXmlParser {
+public class FlowerStaxParser  extends FlowersXmlParser {
     @Override
-    public GreenHouse parseXml(String path) {
+    public Object parseXml(Class rootClass, String rootListName, String path) {
+        configureParser(rootClass, rootListName);
         XMLInputFactory factory = XMLInputFactory.newInstance();
-        GreenHouse greenHouse = new GreenHouse();
         try {
             XMLEventReader eventReader = factory.createXMLEventReader(new FileReader(path));
             while (eventReader.hasNext()) {
@@ -34,7 +34,7 @@ public class FlowerStaxParser extends FlowersXmlParser {
                         break;
                     case XMLStreamConstants.END_ELEMENT:
                         EndElement endElement = event.asEndElement();
-                        elementEnd(endElement.getName().getLocalPart(), greenHouse);
+                        elementEnd(endElement.getName().getLocalPart());
                         break;
                 }
             }
@@ -43,6 +43,6 @@ public class FlowerStaxParser extends FlowersXmlParser {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return greenHouse;
+        return getResult();
     }
 }

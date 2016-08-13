@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<flowers>
-    <flower >
+<Flowers>
+    <AliveFlower>
         <name>Rose</name>
         <quantity>45</quantity>
         <price>450</price>
@@ -30,37 +30,37 @@
                 <max>200</max>
             </waterInWeek>
         </growingTips>
-    </flower>
-<flower >
+    </AliveFlower>
+    <AliveFlower>
 
-    <name>Rossse</name>
-    <quantity>45</quantity>
-    <price>450</price>
-    <soil>clay</soil>
+        <name>Rossse</name>
+        <quantity>45</quantity>
+        <price>450</price>
+        <soil>clay</soil>
 
-    <description>This is short description about flower</description>
+        <description>This is short description about flower</description>
 
-    <origin>
-        <Country>KZ</Country>
-        <Province>astana</Province>
-    </origin>
+        <origin>
+            <Country>KZ</Country>
+            <Province>astana</Province>
+        </origin>
 
-    <visualParameters>
-        <colorSteam>red</colorSteam>
-        <colorLeaves>green</colorLeaves>
-        <averageHeight>5</averageHeight>
-    </visualParameters>
+        <visualParameters>
+            <colorSteam>red</colorSteam>
+            <colorLeaves>green</colorLeaves>
+            <averageHeight>5</averageHeight>
+        </visualParameters>
 
-    <growingTips>
-        <temperature>
-            <min>15</min>
-            <max>20</max>
-        </temperature>
-        <lovelight>true</lovelight>
-        <waterInWeek>
-            <min>150</min>
-            <max>200</max>
-        </waterInWeek>
-    </growingTips>
-</flower>
-</flowers>
+        <growingTips>
+            <temperature>
+                <min>15</min>
+                <max>20</max>
+            </temperature>
+            <lovelight>true</lovelight>
+            <waterInWeek>
+                <min>150</min>
+                <max>200</max>
+            </waterInWeek>
+        </growingTips>
+    </AliveFlower>
+</Flowers>

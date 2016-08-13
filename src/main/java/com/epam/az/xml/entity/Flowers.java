@@ -5,19 +5,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
-@XmlRootElement(name = "greenhouse")
-public class GreenHouse {
+public class Flowers {
     private List<AliveFlower> flowers = new ArrayList<>();
-
-    public GreenHouse() {
+    public Flowers() {
     }
-    @XmlElement
     public void setFlower(AliveFlower flower) {
         flowers.add(flower);
     }
 
-    public AliveFlower getFlower(){
-        return flowers.get(flowers.size()-1);
+    public List<AliveFlower> getFlower(){
+        return flowers;
     }
 
     @Override
@@ -29,7 +26,7 @@ public class GreenHouse {
 
         return stringBuilder.toString();
     }
-    public Flower get(int index){
+    public AliveFlower get(int index){
         return flowers.get(index);
     }
     public void add(AliveFlower flower){
