@@ -32,9 +32,10 @@
             </waterInWeek>
         </growingTips>
     </AliveFlower>
+
     <AliveFlower>
         <id>2</id>
-        <name>Rossse</name>
+        <name>Lavanda</name>
         <quantity>45</quantity>
         <price>450</price>
         <soil>clay</soil>

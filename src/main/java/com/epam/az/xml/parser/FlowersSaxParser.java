@@ -9,6 +9,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class FlowersSaxParser extends FlowersXmlParser {
 

@@ -2,7 +2,7 @@ package com.epam.az.xml.entity;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class GrowingTips implements DescribeFlower {
+public class GrowingTips {
     private WaterInWeek waterInWeek;
     private Temperature temperature;
     private boolean lovelight;

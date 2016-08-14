@@ -2,7 +2,7 @@ package com.epam.az.xml.entity;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class Temperature implements DescribeFlower {
+public class Temperature {
     private int min;
     private int max;
 

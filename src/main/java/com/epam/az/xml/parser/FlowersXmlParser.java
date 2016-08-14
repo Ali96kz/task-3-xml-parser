@@ -7,6 +7,7 @@ import java.lang.reflect.*;
 
 public abstract class FlowersXmlParser implements XmlParser {
     protected StringBuilder stringBuilder = new StringBuilder();
+
     protected Class elementClazz;
     protected Method elementMethod;
 
@@ -108,7 +109,7 @@ public abstract class FlowersXmlParser implements XmlParser {
                 return false;
             }
         }
-        return stringBuilder.toString();
+        return str;
     }
 
     protected void pushObjectInStack(Method[] methods, Object object, FlowerStack flowerStack) {
